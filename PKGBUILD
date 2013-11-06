@@ -11,7 +11,7 @@ depends=('java-runtime-headless')
 makedepends=('unzip')
 conflicts=('orientdb' 'orientdb-git' 'orientdb-graphed-git' 'orientdb-graphed')
 install=$pkgname.install
-source=("https://github.com/nengxu/archlinux-orientdb-community/archive/${pkgname}-${pkgver}.zip"
+source=("https://github.com/nengxu/archlinux-orientdb-community/releases/download/v1.6/${pkgname}-${pkgver}.zip"
   'orientdb.service')
 noextract=("${pkgname}-${pkgver}.zip")
 md5sums=('9adb13cebce5e12f1e1a5a05eca12be6'
