@@ -34,6 +34,7 @@ Thumbs.db
 
 # package files
 *.gz
+*.zip
 
 # src
 src
