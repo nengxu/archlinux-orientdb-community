@@ -15,7 +15,7 @@ source=("https://github.com/nengxu/archlinux-orientdb-community/releases/downloa
   'orientdb.service')
 noextract=("${pkgname}-${pkgver}.zip")
 md5sums=('9adb13cebce5e12f1e1a5a05eca12be6'
-  '64c40019196576036766e7b92729a741')
+  '11ca04909f55bcf5ff7a4a739a6b89af')
 
 build() {
   cd "${srcdir}"
