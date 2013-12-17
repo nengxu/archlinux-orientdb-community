@@ -1,0 +1,3 @@
+#!/bin/sh
+cd /opt/orientdb/bin
+sudo su orient -c ./console.sh
