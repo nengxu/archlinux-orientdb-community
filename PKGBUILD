@@ -1,4 +1,5 @@
 # Maintainer:  Neng Xu <neng2.xu2@gmail.com>
+# Contributor: Tobias Quinn <tobias@tobiasquinn.com>
 
 pkgname=orientdb-community
 pkgver=1.6.2
@@ -11,7 +12,7 @@ depends=('java-runtime-headless')
 makedepends=('unzip')
 conflicts=('orientdb' 'orientdb-git' 'orientdb-graphed-git' 'orientdb-graphed')
 install=$pkgname.install
-source=("https://github.com/tobiasquinn/archlinux-orientdb-community/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.gz"
+source=("https://github.com/nengxu/archlinux-orientdb-community/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.gz"
   'https://github.com/orientechnologies/orientdb-studio/releases/download/Pre-release/studio.zip'
   'orientdb.service'
   'consolefix.patch')
