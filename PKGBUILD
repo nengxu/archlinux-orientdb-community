@@ -1,4 +1,5 @@
 # Maintainer:  Neng Xu <neng2.xu2@gmail.com>
+# Contributor: Tobias Quinn <tobias@tobiasquinn.com>
 
 pkgname=orientdb-community
 pkgver=1.6.2
