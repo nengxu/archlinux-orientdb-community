@@ -2,7 +2,7 @@
 
 pkgname=orientdb-community
 pkgver=1.6.2
-pkgrel=1
+pkgrel=2
 pkgdesc="The Graph-Document NoSQL - Community Edition"
 arch=('any')
 license=('Apache')
@@ -12,10 +12,12 @@ makedepends=('unzip')
 conflicts=('orientdb' 'orientdb-git' 'orientdb-graphed-git' 'orientdb-graphed')
 install=$pkgname.install
 source=("https://github.com/tobiasquinn/archlinux-orientdb-community/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.gz"
-  'orientdb.service')
+  'orientdb.service'
+  'orientdb-console')
 noextract=("${pkgname}-${pkgver}.zip")
 md5sums=('682e1a20b5651898dc4057650cb25367'
-  '11ca04909f55bcf5ff7a4a739a6b89af')
+  '11ca04909f55bcf5ff7a4a739a6b89af'
+  '723114b1565ce4137515cb7b2bcdcb60')
 
 build() {
   cd "${srcdir}"
@@ -47,4 +49,5 @@ package() {
   cp -r www/* "${pkgdir}"/opt/orientdb/www/
 
   install -m644 "${srcdir}"/orientdb.service "${pkgdir}"/usr/lib/systemd/system/
+  install -m755 "${srcdir}"/orientdb-console "${pkgdir}"/usr/bin/
 }
