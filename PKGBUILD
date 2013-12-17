@@ -1,7 +1,7 @@
 # Maintainer:  Neng Xu <neng2.xu2@gmail.com>
 
 pkgname=orientdb-community
-pkgver=1.6
+pkgver=1.6.2
 pkgrel=1
 pkgdesc="The Graph-Document NoSQL - Community Edition"
 arch=('any')
@@ -11,15 +11,15 @@ depends=('java-runtime-headless')
 makedepends=('unzip')
 conflicts=('orientdb' 'orientdb-git' 'orientdb-graphed-git' 'orientdb-graphed')
 install=$pkgname.install
-source=("https://github.com/nengxu/archlinux-orientdb-community/releases/download/v${pkgver}/${pkgname}-${pkgver}.zip"
+source=("https://github.com/tobiasquinn/archlinux-orientdb-community/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.gz"
   'orientdb.service')
 noextract=("${pkgname}-${pkgver}.zip")
-md5sums=('9adb13cebce5e12f1e1a5a05eca12be6'
+md5sums=('682e1a20b5651898dc4057650cb25367'
   '11ca04909f55bcf5ff7a4a739a6b89af')
 
 build() {
   cd "${srcdir}"
-  unzip "${pkgname}-${pkgver}.zip"
+  tar xf "${pkgname}-${pkgver}.tar.gz"
 }
 
 package() {
