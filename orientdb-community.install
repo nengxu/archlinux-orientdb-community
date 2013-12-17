@@ -7,10 +7,9 @@ post_install() {
 
   ln -sf /var/log/orientdb /opt/orientdb/log
   ln -sf /opt/orientdb/config /etc/orientdb
-#  ln -sf /opt/orientdb/bin/console.sh /usr/bin/orientdb-console
+  ln -sf /opt/orientdb/bin/console.sh /usr/bin/orientdb-console
 
   echo "==> OrientDB server should be launched from user 'orient'. Please keep that in mind."
-  echo "==> The orient-console script expects sudo to be installed to allow /opt/orientdb/bin/console.sh to run as orient user"
 }
 
 post_upgrade() {
