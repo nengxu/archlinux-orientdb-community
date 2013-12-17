@@ -12,7 +12,7 @@ depends=('java-runtime-headless')
 makedepends=('unzip')
 conflicts=('orientdb' 'orientdb-git' 'orientdb-graphed-git' 'orientdb-graphed')
 install=$pkgname.install
-source=("https://github.com/tobiasquinn/archlinux-orientdb-community/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.gz"
+source=("https://github.com/nengxu/archlinux-orientdb-community/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.gz"
   'https://github.com/orientechnologies/orientdb-studio/releases/download/Pre-release/studio.zip'
   'orientdb.service'
   'orientdb-console')
