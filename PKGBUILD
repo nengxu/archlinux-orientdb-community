@@ -3,7 +3,7 @@
 
 pkgname=orientdb-community
 pkgver=1.6.2
-pkgrel=3
+pkgrel=4
 pkgdesc="The Graph-Document NoSQL - Community Edition"
 arch=('any')
 license=('Apache')
@@ -15,16 +15,16 @@ install=$pkgname.install
 source=("https://github.com/nengxu/archlinux-orientdb-community/releases/download/v${pkgver}/${pkgname}-${pkgver}.tar.gz"
   'https://github.com/orientechnologies/orientdb-studio/releases/download/Pre-release/studio.zip'
   'orientdb.service'
-  'orientdb-console')
-noextract=("${pkgname}-${pkgver}.zip")
+  'consolefix.patch')
+noextract=("studio.zip")
 md5sums=('682e1a20b5651898dc4057650cb25367'
   '25f15357f72faba7ae7bf48c880ca072'
   '11ca04909f55bcf5ff7a4a739a6b89af'
-  '723114b1565ce4137515cb7b2bcdcb60')
+  'bd8a11d5eabc337862ff9276dd31b80a')
 
 build() {
-  cd "${srcdir}"
-  tar xf "${pkgname}-${pkgver}.tar.gz"
+    cd "${srcdir}"/${pkgname}-${pkgver}
+    patch -Np1 -i ../consolefix.patch
 }
 
 package() {
@@ -53,7 +53,6 @@ package() {
   cp -r www/* "${pkgdir}"/opt/orientdb/www/
 
   install -m644 "${srcdir}"/orientdb.service "${pkgdir}"/usr/lib/systemd/system/
-  install -m755 "${srcdir}"/orientdb-console "${pkgdir}"/usr/bin/
 
   install -m644 "${srcdir}"/studio.zip "${pkgdir}"/opt/orientdb/plugins
 }
