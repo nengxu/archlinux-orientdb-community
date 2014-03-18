@@ -1,4 +1,5 @@
-post_install() {
+post_install() 
+{
   groupadd -r orient
   useradd -r -g orient -d /opt/orientdb -c "OrientDB The Graph-Document NoSQL - Community Edition" orient
 
@@ -12,12 +13,14 @@ post_install() {
   echo "==> OrientDB server should be launched from user 'orient'. Please keep that in mind."
 }
 
-post_upgrade() {
+post_upgrade()
+{
   chown -R orient.orient /opt/orientdb
   chown -R orient.orient /var/log/orientdb
 }
 
-post_remove() {
+post_remove()
+{
   userdel orient
   groupdel orient 2>/dev/null || /bin/true
   if [ -d /opt/orientdb ]; then
@@ -29,7 +32,8 @@ post_remove() {
   fi
 }
 
-pre_remove() {
+pre_remove()
+{
   if [ "$(ps aux | grep -e '^orient' | grep -v grep)" != "" ]; then
     echo -n "==> OrientDB server is running. Stopping OrientDB"
     systemctl stop orientdb.service
