@@ -18,7 +18,6 @@ arch=('any')
 license=('Apache')
 url="http://www.orientdb.org"
 depends=('java-runtime-headless' 'apache-ant')
-makedepends=('unzip')
 conflicts=('orientdb' 'orientdb-git' 'orientdb-graphed-git' 'orientdb-graphed')
 install=$pkgname.install
 groups=()
@@ -46,17 +45,17 @@ build()
     #
     #Parse '-community' from pkgname
     #
-    cd "${srcdir}"/$(echo ${pkgname} | sed s/-community//)-${pkgver}${pkgsuffix}    
+    cd "${srcdir}"/$(echo ${pkgname} | sed s/-community//)-${pkgver}${pkgsuffix}
     ant
 }
 
 #check() {}
 
-package() 
-{    
+package()
+{
   # Build has created a 'releases' dir in the parent.
   cd ${srcdir}/releases/${pkgname}-${pkgver}${pkgsuffix}
-  
+
   # Create directories with permissions
   install -dm755 "${pkgdir}"/opt/orientdb
   install -dm700 "${pkgdir}"/opt/orientdb/benchmarks
@@ -67,28 +66,27 @@ package()
   install -dm755 "${pkgdir}"/opt/orientdb/log
   install -dm755 "${pkgdir}"/opt/orientdb/plugins
   install -dm700 "${pkgdir}"/opt/orientdb/www
-  
+
   # Recursively copy files
   cp -r . "${pkgdir}"/opt/orientdb
 
   # Set permissions on the executables
   install -m700 bin/*.sh "${pkgdir}"/opt/orientdb/bin/
   install -m755 bin/console.sh "${pkgdir}"/opt/orientdb/bin/
-    
+
   # Remove DOS bat files
   find "${pkgdir}"/opt/orientdb -type f -name "*.bat" -exec rm -f {} \;
-  
+
   install -d "${pkgdir}"/usr/bin
   install -d "${pkgdir}"/var/log/orientdb
   install -d "${pkgdir}"/usr/lib/systemd/system
 
   # Instead of a patch
   sed -i 's/cd `dirname $0`/#cd `dirname $0`/' "${pkgdir}"/opt/orientdb/bin/console.sh
-  
+
   sed -i 's|\.\./log|/opt/orientdb/log|' "${pkgdir}"/opt/orientdb/config/orientdb-server-log.properties
   sed -i 's|YOUR_ORIENTDB_INSTALLATION_PATH|/opt/orientdb|' "${pkgdir}"/opt/orientdb/bin/orientdb.sh
   sed -i 's|USER_YOU_WANT_ORIENTDB_RUN_WITH|orient|' "${pkgdir}"/opt/orientdb/bin/orientdb.sh
-  
+
   install -m644 "${srcdir}"/orientdb.service "${pkgdir}"/usr/lib/systemd/system/
 }
-
