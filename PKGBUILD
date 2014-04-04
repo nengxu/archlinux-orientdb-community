@@ -8,12 +8,14 @@
 pkgname=orientdb-community
 
 ## PKGBUILD:pkgver is not allowed to contain colons, hyphens or whitespace
-pkgver=1.7
-pkgsuffix=-rc1
+pkgversion=1.7
+pkgrc=rc2
+pkgsuffix=-$pkgrc
+pkgver=$pkgversion.$pkgrc
 pkgtmp=
 pkgrel=1
 #epoch=1
-pkgdesc="The Graph-Document NoSQL - Community Edition 1.7-rc1"
+pkgdesc="The Graph-Document NoSQL - Community Edition"
 arch=('any')
 license=('Apache')
 url="http://www.orientdb.org"
@@ -33,28 +35,27 @@ changelog=""
 #
 # Using the github release of source, which has no package name.
 #
-source=("https://github.com/orientechnologies/orientdb/archive/${pkgver}${pkgsuffix}.tar.gz" 'orientdb.service')
+source=("https://github.com/orientechnologies/orientdb/archive/${pkgversion}${pkgsuffix}.tar.gz"
+  'orientdb.service')
 
-md5sums=('46813c2fe734e2acacccbfad9f8415b0'
-         '687903eba3737f9733bf1c45c4e68e6d')
+md5sums=('de50a3c9f3910a03157d1acc4db3b20f'
+  '687903eba3737f9733bf1c45c4e68e6d')
 
 #prepare() {}
 
-build()
-{
+build() {
     #
     #Parse '-community' from pkgname
     #
-    cd "${srcdir}"/$(echo ${pkgname} | sed s/-community//)-${pkgver}${pkgsuffix}
+    cd "${srcdir}"/$(echo ${pkgname} | sed s/-community//)-${pkgversion}${pkgsuffix}
     ant
 }
 
 #check() {}
 
-package()
-{
+package() {
   # Build has created a 'releases' dir in the parent.
-  cd ${srcdir}/releases/${pkgname}-${pkgver}${pkgsuffix}
+  cd ${srcdir}/releases/${pkgname}-${pkgversion}${pkgsuffix}
 
   # Create directories with permissions
   install -dm755 "${pkgdir}"/opt/orientdb
@@ -90,3 +91,4 @@ package()
 
   install -m644 "${srcdir}"/orientdb.service "${pkgdir}"/usr/lib/systemd/system/
 }
+
